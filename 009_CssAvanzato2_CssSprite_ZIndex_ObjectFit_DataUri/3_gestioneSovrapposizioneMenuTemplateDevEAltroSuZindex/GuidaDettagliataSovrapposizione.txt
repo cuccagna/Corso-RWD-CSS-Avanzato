@@ -1,0 +1,29 @@
+Quando degli elementi si sovrappongono si vedranno (dal più profondo, quindi meno visibile, al più vicino all'utente che guarda lo schermo, quindi più visibile):
+
+1)Gli elementi posizionati con z-index negativo (nota che non basta dare lo z-index, affinchè si attivi lo z-index devi dargli anche position:relative o fixed o absolute oppure opacity:valoreMinoreDi1  o essere un flex-item e qualche altra proprietà)
+
+
+
+2) Elementi non posizionati (cioè che hanno position:static di default) quindi senza z-index
+
+
+
+3)Elementi posizionati (ad esempio con position:absolute) senza z-index
+
+4)Elementi posizionati con un valore di z-index>1. Valori di z-index più alti stanno sopra (sono visibili). Se due o più elementi posizionati  hanno lo stesso z-index e si sovrappongono vedrai quello che nel codice html sta più in basso (quello che viene dopo)
+
+
+
+Nell'esercizio proposto la navbar ha position:fixed ma non ha uno z-index quindi è il caso 3) e starà davanti agli elementi con class .web-section    perchè quest ultimi rientrano nel caso 2) (ma c'è una container query che crea uno stacking context e incasina tutto)
+
+
+
+Invece gli elementi con classe .correlati-card hanno position:relative e quindi rientrano anche loro nel caso 3) ma essendo più in basso nel markup sono loro ad essere davanti. Se a queste card togli il position:relative  vanno nel caso 2) e quindi staranno sotto (senza dovere ricorrere allo z-index) però il position:relative è necessario.
+
+
+
+Stessa cosa per il footer, l'elemento con id #main-footer ha position:relative e quindi rientra nel caso 3) e quindi starà sopra alla navbar(perchè più in basso nel markup).
+
+
+
+Se alla navbar dai uno z-index>1 andrai nel caso 4) e quindi starai sopra agli elementi che ricadono nel caso 3) (footer e card)
